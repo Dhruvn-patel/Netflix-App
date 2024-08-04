@@ -8,8 +8,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { addUser } from "../store/userSlice";
+import { addUser } from "../store/slices/userSlice";
 import { useDispatch } from "react-redux";
+import { USER_AVTAR } from "../utils/constant";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -47,13 +48,11 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          console.log("userCredential :>> ", userCredential);
           setErrorMsg("");
           const { user } = userCredential;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://avatars.githubusercontent.com/u/8079861?s=80&v=4",
+            photoURL: USER_AVTAR,
           })
             .then(() => {
               toggleLoginForm();
@@ -83,7 +82,6 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          console.log(userCredential);
           setErrorMsg("");
           navigate("/browse");
         })
