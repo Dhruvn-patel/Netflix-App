@@ -5,11 +5,8 @@ import VideoPlayBackground from "./VideoPlayBackground";
 
 const MainContainerView = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
-
   if (!movies) return;
-
   const movie = movies[Math.floor(Math.random() * movies.length)];
-  console.log("movie :>> ", movie);
   const { original_title, overview, id } = movie;
   return (
     <div>
